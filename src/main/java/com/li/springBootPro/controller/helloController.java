@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,10 @@ public class helloController {
     }
 
     @RequestMapping(value = "/HiInfo",method = RequestMethod.GET)
-    public List<Map<String, Object>> getAllInfo(){
-        return helloMapper.getHelloInfo();
+    public Map<String, Object> getAllInfo(){
+        Map<String, Object> result = new HashMap<>();
+        result.put("count", helloMapper.getHelloInfoCount());
+        result.put("top10", helloMapper.getHelloInfoLimit10());
+        return result;
     }
 }

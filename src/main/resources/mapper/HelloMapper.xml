@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.li.springBootPro.mapper.HelloMapper">
-    <select id="getHelloInfo" resultType="java.util.LinkedHashMap">
+    <select id="getHelloInfoCount" resultType="java.lang.Integer">
         select
           count(*) as num
         from
           sys_role
+    </select>
+
+
+    <select id="getHelloInfoLimit10" resultType="java.util.LinkedHashMap">
+        select
+          *
+        from
+          sys_role limit 10
     </select>
 </mapper>

@@ -7,5 +7,8 @@ import java.util.Map;
 
 @Mapper
 public interface HelloMapper {
-    List<Map<String, Object>> getHelloInfo();
+    List<Map<String, Object>> getHelloInfoLimit10();
+
+    int getHelloInfoCount();
+
 }
