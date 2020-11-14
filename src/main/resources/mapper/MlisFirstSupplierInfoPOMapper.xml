@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.li.springBootPro.mapper.MlisFirstSupplierInfoPOMapper" >
+  <resultMap id="BaseResultMap" type="com.li.springBootPro.entry.MlisFirstSupplierInfoPO" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR" />
+    <result column="business_scope" property="businessScope" jdbcType="VARCHAR" />
+    <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
+    <result column="enterprise_category" property="enterpriseCategory" jdbcType="VARCHAR" />
+    <result column="contact_person" property="contactPerson" jdbcType="VARCHAR" />
+    <result column="contact_tel" property="contactTel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="account_bank" property="accountBank" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="tax_no" property="taxNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="mrg_category" property="mrgCategory" jdbcType="VARCHAR" />
+    <result column="entrust_enterprise_id" property="entrustEnterpriseId" jdbcType="VARCHAR" />
+    <result column="entrust_enterprise_name" property="entrustEnterpriseName" jdbcType="VARCHAR" />
+    <result column="residence" property="residence" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+    <result column="in_use" property="inUse" jdbcType="VARCHAR" />
+    <result column="record_person" property="recordPerson" jdbcType="VARCHAR" />
+    <result column="expired_flag" property="expiredFlag" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.li.springBootPro.entry.MlisFirstSupplierInfoPO" extends="BaseResultMap" >
+    <result column="supplier_no" property="supplierNo" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, enterprise_id, business_scope, enterprise_name, enterprise_category, contact_person, 
+    contact_tel, email, account_name, account_bank, account, tax_no, status, mrg_category, 
+    entrust_enterprise_id, entrust_enterprise_name, residence, sort, in_use, record_person, 
+    expired_flag, create_by, create_date, update_by, update_date, del_flag, remarks
+  </sql>
+  <sql id="Blob_Column_List" >
+    supplier_no
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mlis_first_supplier_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from mlis_first_supplier_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.li.springBootPro.entry.MlisFirstSupplierInfoPO" >
+    insert into mlis_first_supplier_info (id, enterprise_id, business_scope, 
+      enterprise_name, enterprise_category, contact_person, 
+      contact_tel, email, account_name, 
+      account_bank, account, tax_no, 
+      status, mrg_category, entrust_enterprise_id, 
+      entrust_enterprise_name, residence, sort, 
+      in_use, record_person, expired_flag, 
+      create_by, create_date, update_by, 
+      update_date, del_flag, remarks, 
+      supplier_no)
+    values (#{id,jdbcType=VARCHAR}, #{enterpriseId,jdbcType=VARCHAR}, #{businessScope,jdbcType=VARCHAR}, 
+      #{enterpriseName,jdbcType=VARCHAR}, #{enterpriseCategory,jdbcType=VARCHAR}, #{contactPerson,jdbcType=VARCHAR}, 
+      #{contactTel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, 
+      #{accountBank,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{taxNo,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{mrgCategory,jdbcType=VARCHAR}, #{entrustEnterpriseId,jdbcType=VARCHAR}, 
+      #{entrustEnterpriseName,jdbcType=VARCHAR}, #{residence,jdbcType=VARCHAR}, #{sort,jdbcType=VARCHAR}, 
+      #{inUse,jdbcType=VARCHAR}, #{recordPerson,jdbcType=VARCHAR}, #{expiredFlag,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{supplierNo,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.li.springBootPro.entry.MlisFirstSupplierInfoPO" >
+    insert into mlis_first_supplier_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="enterpriseId != null" >
+        enterprise_id,
+      </if>
+      <if test="businessScope != null" >
+        business_scope,
+      </if>
+      <if test="enterpriseName != null" >
+        enterprise_name,
+      </if>
+      <if test="enterpriseCategory != null" >
+        enterprise_category,
+      </if>
+      <if test="contactPerson != null" >
+        contact_person,
+      </if>
+      <if test="contactTel != null" >
+        contact_tel,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="accountName != null" >
+        account_name,
+      </if>
+      <if test="accountBank != null" >
+        account_bank,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="taxNo != null" >
+        tax_no,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="mrgCategory != null" >
+        mrg_category,
+      </if>
+      <if test="entrustEnterpriseId != null" >
+        entrust_enterprise_id,
+      </if>
+      <if test="entrustEnterpriseName != null" >
+        entrust_enterprise_name,
+      </if>
+      <if test="residence != null" >
+        residence,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="inUse != null" >
+        in_use,
+      </if>
+      <if test="recordPerson != null" >
+        record_person,
+      </if>
+      <if test="expiredFlag != null" >
+        expired_flag,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="supplierNo != null" >
+        supplier_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseId != null" >
+        #{enterpriseId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseName != null" >
+        #{enterpriseName,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseCategory != null" >
+        #{enterpriseCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null" >
+        #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBank != null" >
+        #{accountBank,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNo != null" >
+        #{taxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="mrgCategory != null" >
+        #{mrgCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustEnterpriseId != null" >
+        #{entrustEnterpriseId,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustEnterpriseName != null" >
+        #{entrustEnterpriseName,jdbcType=VARCHAR},
+      </if>
+      <if test="residence != null" >
+        #{residence,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="inUse != null" >
+        #{inUse,jdbcType=VARCHAR},
+      </if>
+      <if test="recordPerson != null" >
+        #{recordPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="expiredFlag != null" >
+        #{expiredFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierNo != null" >
+        #{supplierNo,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.li.springBootPro.entry.MlisFirstSupplierInfoPO" >
+    update mlis_first_supplier_info
+    <set >
+      <if test="enterpriseId != null" >
+        enterprise_id = #{enterpriseId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        business_scope = #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseName != null" >
+        enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseCategory != null" >
+        enterprise_category = #{enterpriseCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null" >
+        contact_person = #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        contact_tel = #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountBank != null" >
+        account_bank = #{accountBank,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="taxNo != null" >
+        tax_no = #{taxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="mrgCategory != null" >
+        mrg_category = #{mrgCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustEnterpriseId != null" >
+        entrust_enterprise_id = #{entrustEnterpriseId,jdbcType=VARCHAR},
+      </if>
+      <if test="entrustEnterpriseName != null" >
+        entrust_enterprise_name = #{entrustEnterpriseName,jdbcType=VARCHAR},
+      </if>
+      <if test="residence != null" >
+        residence = #{residence,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="inUse != null" >
+        in_use = #{inUse,jdbcType=VARCHAR},
+      </if>
+      <if test="recordPerson != null" >
+        record_person = #{recordPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="expiredFlag != null" >
+        expired_flag = #{expiredFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierNo != null" >
+        supplier_no = #{supplierNo,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.li.springBootPro.entry.MlisFirstSupplierInfoPO" >
+    update mlis_first_supplier_info
+    set enterprise_id = #{enterpriseId,jdbcType=VARCHAR},
+      business_scope = #{businessScope,jdbcType=VARCHAR},
+      enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+      enterprise_category = #{enterpriseCategory,jdbcType=VARCHAR},
+      contact_person = #{contactPerson,jdbcType=VARCHAR},
+      contact_tel = #{contactTel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      account_bank = #{accountBank,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      tax_no = #{taxNo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      mrg_category = #{mrgCategory,jdbcType=VARCHAR},
+      entrust_enterprise_id = #{entrustEnterpriseId,jdbcType=VARCHAR},
+      entrust_enterprise_name = #{entrustEnterpriseName,jdbcType=VARCHAR},
+      residence = #{residence,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR},
+      in_use = #{inUse,jdbcType=VARCHAR},
+      record_person = #{recordPerson,jdbcType=VARCHAR},
+      expired_flag = #{expiredFlag,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      supplier_no = #{supplierNo,jdbcType=VARBINARY}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.li.springBootPro.entry.MlisFirstSupplierInfoPO" >
+    update mlis_first_supplier_info
+    set enterprise_id = #{enterpriseId,jdbcType=VARCHAR},
+      business_scope = #{businessScope,jdbcType=VARCHAR},
+      enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+      enterprise_category = #{enterpriseCategory,jdbcType=VARCHAR},
+      contact_person = #{contactPerson,jdbcType=VARCHAR},
+      contact_tel = #{contactTel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      account_bank = #{accountBank,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      tax_no = #{taxNo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      mrg_category = #{mrgCategory,jdbcType=VARCHAR},
+      entrust_enterprise_id = #{entrustEnterpriseId,jdbcType=VARCHAR},
+      entrust_enterprise_name = #{entrustEnterpriseName,jdbcType=VARCHAR},
+      residence = #{residence,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR},
+      in_use = #{inUse,jdbcType=VARCHAR},
+      record_person = #{recordPerson,jdbcType=VARCHAR},
+      expired_flag = #{expiredFlag,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
