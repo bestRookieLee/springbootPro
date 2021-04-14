@@ -8,4 +8,5 @@ import java.util.List;
 @Data
 public class serializeIdDTO extends serializeIdTabPO{
     List<detailTabPO> detailTabPOList = new ArrayList<>();
+    List<serializeIdDTO> childrenNode;
 }

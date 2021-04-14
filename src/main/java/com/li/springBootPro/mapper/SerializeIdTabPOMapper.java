@@ -16,9 +16,13 @@ public interface SerializeIdTabPOMapper {
 
     serializeIdTabPO selectByPrimaryKey(Integer id);
 
+    List<serializeIdTabPO> selectAll();
+
     int updateByPrimaryKeySelective(serializeIdTabPO record);
 
     int updateByPrimaryKey(serializeIdTabPO record);
 
     List<serializeIdDTO> selectDetailUnderDt();
+
+    List<serializeIdDTO> selectAllAndGrp();
 }

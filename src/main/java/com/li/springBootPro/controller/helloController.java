@@ -1,6 +1,7 @@
 package com.li.springBootPro.controller;
 
 import com.li.springBootPro.entry.serializeIdDTO;
+import com.li.springBootPro.entry.serializeIdTabPO;
 import com.li.springBootPro.mapper.HelloMapper;
 import com.li.springBootPro.mapper.SerializeIdTabPOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/helloYou")
@@ -43,5 +45,20 @@ public class helloController {
          */
         List<serializeIdDTO> serializeIdDTOList = serializeIdTabPOMapper.selectDetailUnderDt();
         return serializeIdDTOList;
+    }
+
+
+    @RequestMapping(value = "/selectAllAndGrp",method = RequestMethod.GET)
+    public List<serializeIdDTO> selectAllAndGrp(){
+        List<serializeIdDTO> serializeIdDTOList = serializeIdTabPOMapper.selectAllAndGrp();
+        return serializeIdDTOList;
+    }
+
+    @RequestMapping(value = "/selectAll",method = RequestMethod.GET)
+    public Map<String, List<serializeIdTabPO>> selectAll(){
+        List<serializeIdTabPO> serializeIdPOList = serializeIdTabPOMapper.selectAll();
+//        Map<String, List<serializeIdTabPO>> serializeIdPOListGrpSerializeId = serializeIdPOList.stream().collect(Collectors.groupingBy(serializeIdTabPO::getSerializeId));
+        Map<String, List<serializeIdTabPO>> serializeIdPOListGrpSerializeId = serializeIdPOList.stream().collect(Collectors.groupingBy(serializeIdTabPO::getParentCode));
+        return serializeIdPOListGrpSerializeId;
     }
 }

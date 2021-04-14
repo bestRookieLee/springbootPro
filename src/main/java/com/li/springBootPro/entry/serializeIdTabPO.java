@@ -5,6 +5,8 @@ public class serializeIdTabPO {
 
     private String code;
 
+    private String parentCode;
+
     private String serializeId;
 
     private String info;
@@ -39,5 +41,13 @@ public class serializeIdTabPO {
 
     public void setInfo(String info) {
         this.info = info == null ? null : info.trim();
+    }
+
+    public String getParentCode() {
+        return parentCode;
+    }
+
+    public void setParentCode(String parentCode) {
+        this.parentCode = parentCode;
     }
 }

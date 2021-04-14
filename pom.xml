@@ -8,6 +8,7 @@
 		<version>2.2.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<packaging>jar</packaging>
 	<groupId>com.li</groupId>
 	<artifactId>springBootPro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -18,10 +19,17 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -63,6 +71,12 @@
 			<version>1.3.7</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -98,35 +112,38 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
+				</configuration>
 			</plugin>
 
-			<plugin>
-				<!--Mybatis-generator插件,用于自动生成Mapper和POJO-->
-				<groupId>org.mybatis.generator</groupId>
-				<artifactId>mybatis-generator-maven-plugin</artifactId>
-				<version>1.3.2</version>
-				<configuration>
-					<!--配置文件的位置-->
-					<configurationFile>src/main/resources/mybatis/mybatis-generator.xml</configurationFile>
-					<verbose>true</verbose>
-					<overwrite>true</overwrite>
-				</configuration>
-				<executions>
-					<execution>
-						<id>Generate MyBatis Artifacts</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.mybatis.generator</groupId>
-						<artifactId>mybatis-generator-core</artifactId>
-						<version>1.3.2</version>
-					</dependency>
-				</dependencies>
-			</plugin>
+			<!--<plugin>-->
+				<!--&lt;!&ndash;Mybatis-generator插件,用于自动生成Mapper和POJO&ndash;&gt;-->
+				<!--<groupId>org.mybatis.generator</groupId>-->
+				<!--<artifactId>mybatis-generator-maven-plugin</artifactId>-->
+				<!--<version>1.3.2</version>-->
+				<!--<configuration>-->
+					<!--&lt;!&ndash;配置文件的位置&ndash;&gt;-->
+					<!--<configurationFile>src/main/resources/mybatis/mybatis-generator.xml</configurationFile>-->
+					<!--<verbose>true</verbose>-->
+					<!--<overwrite>true</overwrite>-->
+				<!--</configuration>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<id>Generate MyBatis Artifacts</id>-->
+						<!--<goals>-->
+							<!--<goal>generate</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+				<!--<dependencies>-->
+					<!--<dependency>-->
+						<!--<groupId>org.mybatis.generator</groupId>-->
+						<!--<artifactId>mybatis-generator-core</artifactId>-->
+						<!--<version>1.3.2</version>-->
+					<!--</dependency>-->
+				<!--</dependencies>-->
+			<!--</plugin>-->
 		</plugins>
 		<resources>
 			<resource>

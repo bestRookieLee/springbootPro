@@ -7,6 +7,14 @@
     <result column="serialize_id" property="serializeId" jdbcType="VARCHAR" />
     <result column="info" property="info" jdbcType="VARCHAR" />
   </resultMap>
+
+  <resultMap id="BaseResultMapOfAll" type="com.li.springBootPro.entry.serializeIdTabPO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
+    <result column="serialize_id" property="serializeId" jdbcType="VARCHAR" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+  </resultMap>
   <sql id="Base_Column_List" >
     id, code, serialize_id, info
   </sql>
@@ -15,6 +23,13 @@
     <include refid="Base_Column_List" />
     from serialize_id_tab
     where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMapOfAll">
+    select
+    parent_code,
+    <include refid="Base_Column_List" />
+    from serialize_id_tab
   </select>
 
   <resultMap id="TestResultMap" type="com.li.springBootPro.entry.serializeIdDTO" >
@@ -28,6 +43,34 @@
       <result column="dt_serialize_id" property="serializeId" jdbcType="VARCHAR" />
       <result column="dt_period" property="period" jdbcType="VARCHAR" />
       <result column="dt_info" property="info" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+
+  <resultMap id="TestResultMap2" type="com.li.springBootPro.entry.serializeIdDTO" >
+
+    <result column="sit_code" property="code" jdbcType="VARCHAR" />
+    <result column="sit_parent_code" property="parentCode" jdbcType="VARCHAR" />
+    <result column="sit_serialize_id" property="serializeId" jdbcType="VARCHAR" />
+    <result column="sit_info" property="info" jdbcType="VARCHAR" />
+    <collection property="detailTabPOList" column="sit_serialize_id" ofType="com.li.springBootPro.entry.detailTabPO" >
+      <id column="dt_id" property="id" jdbcType="INTEGER" />
+      <result column="dt_code" property="code" jdbcType="VARCHAR" />
+      <result column="dt_serialize_id" property="serializeId" jdbcType="VARCHAR" />
+      <result column="dt_period" property="period" jdbcType="VARCHAR" />
+      <result column="dt_info" property="info" jdbcType="VARCHAR" />
+    </collection>
+    <collection property="childrenNode" column="sit_parent_code" ofType="com.li.springBootPro.entry.serializeIdDTO" >
+      <result column="sit2_code" property="code" jdbcType="VARCHAR" />
+      <result column="sit2_parent_code" property="parentCode" jdbcType="VARCHAR" />
+      <result column="sit2_serialize_id" property="serializeId" jdbcType="VARCHAR" />
+      <result column="sit2_info" property="info" jdbcType="VARCHAR" />
+      <collection property="detailTabPOList" column="sit_serialize_id" ofType="com.li.springBootPro.entry.detailTabPO" >
+        <id column="dt1_id" property="id" jdbcType="INTEGER" />
+        <result column="dt1_code" property="code" jdbcType="VARCHAR" />
+        <result column="dt1_serialize_id" property="serializeId" jdbcType="VARCHAR" />
+        <result column="dt1_period" property="period" jdbcType="VARCHAR" />
+        <result column="dt1_info" property="info" jdbcType="VARCHAR" />
+      </collection>
     </collection>
   </resultMap>
   <select id="selectDetailUnderDt" resultMap="TestResultMap">
@@ -47,6 +90,37 @@
     and dt.code = '001'
     order by sit.serialize_id, dt.period
   </select>
+
+  <select id="selectAllAndGrp" resultMap="TestResultMap2">
+	select
+        sit.id sit_id,
+        sit.code sit_code,
+        sit.parent_code sit_parent_code,
+        sit.serialize_id sit_serialize_id,
+        sit.info sit_info,
+        sit2.id sit2_id,
+        sit2.code sit2_code,
+        sit2.parent_code sit2_parent_code,
+        sit2.serialize_id sit2_serialize_id,
+        sit2.info sit2_info,
+
+        dt.id dt_id,
+        dt.code dt_code,
+        dt.serialize_id dt_serialize_id,
+        dt.period dt_period,
+        dt.info dt_info,
+				dt1.id dt1_id,
+        dt1.code dt1_code,
+        dt1.serialize_id dt1_serialize_id,
+        dt1.period dt1_period,
+        dt1.info dt1_info
+    from serialize_id_tab sit
+    left join serialize_id_tab sit2 on sit2.parent_code = sit.code
+    left join detail_tab dt on dt.serialize_id = sit.serialize_id
+    left join detail_tab dt1 on dt1.serialize_id = sit2.serialize_id
+		where sit.parent_code = '000'
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from serialize_id_tab
     where id = #{id,jdbcType=INTEGER}

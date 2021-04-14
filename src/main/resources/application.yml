@@ -4,12 +4,12 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ceshi?Unicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://192.168.15.132:3306/ceshi?Unicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password: admin
   redis:
-    host: 192.168.15.131
-    port: 8089
+    host: 192.168.15.132
+    port: 6379
     password: admin
     jedis:
       pool:
