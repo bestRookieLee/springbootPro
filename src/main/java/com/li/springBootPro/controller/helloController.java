@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,9 @@ public class helloController {
 
     @Autowired
     SerializeIdTabPOMapper serializeIdTabPOMapper;
+
+    @Autowired
+    DataSource dataSource;
 
     @RequestMapping(value = "/Hi",method = RequestMethod.GET)
     public String sayHiToYou(){
