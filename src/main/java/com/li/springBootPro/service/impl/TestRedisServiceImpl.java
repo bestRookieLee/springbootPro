@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 @Service
 public class TestRedisServiceImpl implements TestRedisService {
 
@@ -18,15 +17,21 @@ public class TestRedisServiceImpl implements TestRedisService {
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
 
-    public Map<String, String> typeString(){
+    public Map<String, Object> typeString(){
         SimpleDateFormat sdf = new SimpleDateFormat(yyyy_MM_dd);
         if (!redisTemplate.hasKey("timeStampNum") && !redisTemplate.hasKey("mykeyFromSrping10")) {
             redisTemplate.opsForValue().set("timeStampNum", String.valueOf(new Date().getTime()));
             redisTemplate.opsForValue().set("mykeyFromSrping10", sdf.format(new Date()));
         }
-        Map<String, String> resultMap = new HashMap<>();
+        //反返回map 键值对
+        Map<Object, Object> map = redisTemplate.opsForHash().entries("runoobkey");
+        for(Map.Entry<Object, Object> entry: map.entrySet()){
+            System.out.println("key is: " + entry.getKey() + " value is:" + entry.getValue());
+        }
+        Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("timeStampNum", redisTemplate.opsForValue().get("timeStampNum"));
         resultMap.put("mykeyFromSrping10", redisTemplate.opsForValue().get("mykeyFromSrping10"));
+        resultMap.put("map", map);
         return resultMap;
     }
 }
