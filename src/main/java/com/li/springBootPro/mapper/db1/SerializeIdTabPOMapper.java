@@ -1,4 +1,4 @@
-package com.li.springBootPro.mapper;
+package com.li.springBootPro.mapper.db1;
 
 import com.li.springBootPro.entry.serializeIdDTO;
 import com.li.springBootPro.entry.serializeIdTabPO;

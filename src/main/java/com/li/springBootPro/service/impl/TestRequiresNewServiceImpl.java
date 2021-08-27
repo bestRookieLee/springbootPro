@@ -1,7 +1,7 @@
 package com.li.springBootPro.service.impl;
 
 import com.li.springBootPro.entry.MlisFirstSupplierInfoPO;
-import com.li.springBootPro.mapper.MlisFirstSupplierInfoPOMapper;
+import com.li.springBootPro.mapper.db1.MlisFirstSupplierInfoPOMapper;
 import com.li.springBootPro.service.TestRequiresNewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
