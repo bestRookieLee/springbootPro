@@ -18,4 +18,9 @@ public class TestRedisController {
     public Object typeString(){
         return testRedisService.typeString();
     }
+
+    @RequestMapping(value = "/typeHash",method = RequestMethod.GET)
+    public Object typeHash(){
+        return testRedisService.typeHash();
+    }
 }
