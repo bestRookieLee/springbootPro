@@ -26,7 +26,7 @@ public class Db2Config {
     public SqlSessionFactory sqlSessionFactoryDb2() throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSourceDb2);
-        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/db2/*.xml"));
+        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:/mapper/db2/*.xml"));
         return factoryBean.getObject();
     }
 
