@@ -28,6 +28,12 @@ public class TestRedisServiceImpl implements TestRedisService {
             redisTemplate.opsForValue().set("mykeyFromSrping10", sdf.format(new Date()));
         }
         //反返回map 键值对
+        Map<Object, Object> inMap = new HashMap<>();
+        inMap.put("key1","value1");
+        inMap.put("key2","value2");
+        inMap.put("key3","value3");
+        inMap.put("key4","value4");
+        redisTemplate.opsForHash().putAll("runoobkey", inMap);//整个map 塞到hash中
         Map<Object, Object> map = redisTemplate.opsForHash().entries("runoobkey");
         for(Map.Entry<Object, Object> entry: map.entrySet()){
             System.out.println("key is: " + entry.getKey() + " value is:" + entry.getValue());
