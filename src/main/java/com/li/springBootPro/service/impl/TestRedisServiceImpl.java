@@ -1,7 +1,6 @@
 package com.li.springBootPro.service.impl;
 
 import com.li.springBootPro.service.TestRedisService;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
