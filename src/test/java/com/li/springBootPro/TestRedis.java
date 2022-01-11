@@ -19,7 +19,7 @@ public class TestRedis {
 //        for (int i = 0; i <10 ; i++) {
 //            redisTemplate.opsForValue().set("mykeyFromSrping" + i, "helloRedis" + (10*i));
 //        }
-        redisTemplate.opsForValue().set("mykeyFromSrping10", "helloRedis1001");
+        redisTemplate.opsForValue().set("mykeyFromSrping10", "helloRedis10023");
             System.out.println(redisTemplate.opsForValue().get("mykeyFromSrping10"));
     }
 }
